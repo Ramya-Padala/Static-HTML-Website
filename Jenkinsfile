@@ -24,7 +24,7 @@ pipeline {
             docker run -d \
                         --name html-nginx-container \
                         --restart unless-stopped \
-                        -p 8080:80 \
+                        -p 8081:80 \
                         html-nginx-app:latest
 
             '''
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh '''
                     sleep 3
-                    curl --fail http://127.0.0.1:8080
+                    curl --fail http://127.0.0.1:8081
                 '''
             }
         }
