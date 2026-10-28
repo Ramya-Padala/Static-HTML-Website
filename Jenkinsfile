@@ -11,10 +11,12 @@ pipeline {
       steps {
         sh 'docker build -t html-nginx-app:latest .'
       }
+    }
       stage('Docker test') {
         steps {
           sh 'docker ps -a .'
         }
+      }
         stage('Deploy') {
           steps {
             sh '''
@@ -27,6 +29,7 @@ pipeline {
 
             '''
           }
+        }
           stage('Verify Website') {
             steps {
                 sh '''
