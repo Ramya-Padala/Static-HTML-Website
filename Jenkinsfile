@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: github.com/Ramya-Padala/Static-HTML-Website.git
+        git branch: 'main',
+           url: 'https://github.com/Ramya-Padala/Static-HTML-Website.git'
       }
     }
     stage('Docker Build') {
@@ -17,6 +18,7 @@ pipeline {
         stage('Deploy') {
           steps {
             sh '''
+            docker rm -f html-nginx-container 2>/dev/null || true
             docker run -d \
                         --name html-nginx-container \
                         --restart unless-stopped \
